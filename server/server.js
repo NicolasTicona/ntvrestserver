@@ -1,43 +1,23 @@
 require('./config/config')
 
 const express = require('express')
-const app = express()
+const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 
+const app = express()
+
 app.use(bodyParser.urlencoded({extended: false}))
+// Parse application/json
 app.use(bodyParser.json())
 
-app.get('/user', (req, res) => {
-    res.json('get User')
-})
+app.use(require('./routes/usuario'))
 
-app.post('/user', (req, res) => {
-    let body = req.body
-    
-    if(body.nombre === undefined) {
-        res.status(400).json({
-            ok: false,
-            mensaje: 'El nombre es necesario'
-        })
-    }
+// Connection DB
+mongoose.connect(process.env.urlDB, { useNewUrlParser: true}, (err, res) => {
 
-    else{    
-        res.json({
-            persona: body
-        })
-    }
-})
+    if (err) throw err
 
-app.put('/user/:id', (req, res) => {
- 
-    let id = req.params.id
-    res.json({
-        id
-    })
-})
-
-app.delete('/user', (req, res) => {
-    res.json('delete User')
+    console.log('DataBase Online')
 })
 
 app.listen(process.env.PORT , () => {
