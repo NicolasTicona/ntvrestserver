@@ -10,7 +10,9 @@ app.use(bodyParser.urlencoded({extended: false}))
 // Parse application/json
 app.use(bodyParser.json())
 
-app.use(require('./routes/usuario'))
+// Routes
+
+app.use(require('./routes/index'))
 
 // Connection DB
 mongoose.connect(process.env.urlDB, { useNewUrlParser: true}, (err, res) => {

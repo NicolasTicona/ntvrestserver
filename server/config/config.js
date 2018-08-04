@@ -12,6 +12,18 @@ process.env.PORT = process.env.PORT || 3000
 process.env.NODE_ENV = process.env.NODE_ENV || 'dev'
 
 // ========================
+// Vencimiento Token
+// ========================
+
+process.env.CADUCIDAD_TOKEN = 60 * 60 * 24 * 30
+
+// ========================
+// Seed Autentication
+// ========================
+
+process.env.SEED = process.env.SEED || 'seed-desarrollo'
+
+// ========================
 // DB
 // ========================
 
